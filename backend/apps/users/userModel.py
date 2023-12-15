@@ -10,6 +10,7 @@ PyObjectId = Annotated[str, BeforeValidator(str)]
 class UserBasicInfo(BaseModel):
     id: PyObjectId = Field(alias="_id", default=None)
     username: str = Field(...)
+    email: str = Field(...)
 
 class UserBasicInfoCollection(BaseModel):
     users: List[UserBasicInfo]

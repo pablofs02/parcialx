@@ -22,9 +22,9 @@ uri = os.getenv('MONGODB_URI')
 client = MongoClient(uri)
 
 # Set the desired db
-db = client.elRastro2
+db = client.parcial
 
-versionRoute = "api/v1"
+versionRoute = "api"
 
 origins = [
     "*"
@@ -70,7 +70,7 @@ def read_root():
          tags=["User"])
 async def get_users(page: int = Query(1, ge=1), page_size: int = Query(10, le=20)):
     skip = (page - 1) * page_size
-    users = db.User.find(None, {"username": 1}).skip(skip).limit(page_size)
+    users = db.User.find(None, {"username": 1, "email": 1}).skip(skip).limit(page_size)
     return {"users": list(users)}
 
 
